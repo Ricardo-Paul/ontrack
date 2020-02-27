@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  chosen_date: 2020-02-27
+
+two:
+  chosen_date: 2020-02-27
