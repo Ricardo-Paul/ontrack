@@ -6,5 +6,8 @@ Rails.application.routes.draw do
     resources :notes
     resources :tasks
     resources :lessons
+
+    get 'getTasks', to: 'tasks#find_tasks'
+    get 'toggleDone', to: 'tasks#toggle_done'
   end
 end
