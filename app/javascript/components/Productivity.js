@@ -2,7 +2,15 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import Task from './Task';
 
+// imports
+import helpers from '../modules/utils';
+
+const { extractDate } = helpers;
+
+
 export default class Productivity extends Component {
+
+    extractDate = helpers.extractDate;
 
     state = {
         days: [],
@@ -12,17 +20,9 @@ export default class Productivity extends Component {
         tasks: []
     }
 
-    extractDate(date){
-        let dayNumber = date.split("-")[2]
-        // console.log(dayNumber)
-        return dayNumber
-    }
-
     fetchTask(day_id){
-        // console.log('mounted')
         axios.get(`/api/getTasks?day_id=${day_id}`)
             .then(res => {
-                // console.log(res.data)
                 this.setState({
                     tasks: res.data
                 })
@@ -34,12 +34,10 @@ export default class Productivity extends Component {
         task.style.transform = s
     }
 
-
     componentDidMount(){
         axios.get('/api/days')
             .then(res => {
-                // console.log(res.data)
-                let dayNumber = this.extractDate(res.data[1].chosen_date);
+                let dayNumber = extractDate(res.data[1].chosen_date);
                 this.setState({
                     days: res.data,
                     date: dayNumber
@@ -56,7 +54,6 @@ export default class Productivity extends Component {
             this.toggleTaskModal("scale(1)", .5, "block")
         }
 
-
         const closeTask = () => {
             this.toggleTaskModal("scale(0)", 0, "none")
         }
@@ -64,7 +61,6 @@ export default class Productivity extends Component {
         const toggleDone = (id) => {
             axios.get(`/api/toggleDone?id=${id}`)
             .then(res => {
-                // console.log(res.data)
             })
 
             let tasks = this.state.tasks;
@@ -73,6 +69,20 @@ export default class Productivity extends Component {
             this.setState({
                 tasks: tasks
             })
+        }
+
+        const submit = () => {
+            const data = {
+                "task":{
+                    "title": "Add redux now",
+                    "done": "false",
+                    "day_id": `${this.state.dayId}`
+                }
+            }
+            axios.post('/api/tasks', data)
+             .then(res => {
+                console.log(res.data)
+             })
         }
 
         return (
@@ -84,6 +94,7 @@ export default class Productivity extends Component {
                     closeTask={closeTask} 
                     tasks={this.state.tasks} 
                     toggleDone={toggleDone}
+                    submit={submit}
                 />
 
                 {this.state.days.map(day => {

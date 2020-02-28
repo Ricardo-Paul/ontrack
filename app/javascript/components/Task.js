@@ -23,7 +23,7 @@ export default class Task extends Component {
                 <span className="closeTask" onClick={this.props.closeTask} > X </span>
                 <div className="form-input">
                     <input className="input" type="text" placeholder="Add a Task..." />
-                    <button className="add"> ADD </button>
+                    <button className="add" onClick={this.props.submit} > ADD </button>
                 </div>
                 {this.returnTasks()}
             </div>
