@@ -2,18 +2,19 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import Task from './Task';
 
+import { connect } from 'react-redux';
+import { setDays } from '../redux/actions';
+
+
 // imports
 import helpers from '../modules/utils';
-
 const { extractDate } = helpers;
 
 
-export default class Productivity extends Component {
-
+class Productivity extends Component {
     extractDate = helpers.extractDate;
 
     state = {
-        days: [],
         date: '',
         dayId: '',
 
@@ -37,15 +38,20 @@ export default class Productivity extends Component {
     componentDidMount(){
         axios.get('/api/days')
             .then(res => {
-                let dayNumber = extractDate(res.data[1].chosen_date);
+                // let dayNumber = extractDate(res.data[1].chosen_date);
+                this.props.setDays(res.data)
+               console.log("data",res.data[1], typeof(res.data))
+               console.log("props", this.props.days)
                 this.setState({
-                    days: res.data,
-                    date: dayNumber
+                    days: res.data
+                    // date: dayNumber
                 })
+                console.log(this.state.days, typeof(this.state.days))
             })
     }
 
     render() {
+        // console.log(this.props.days)
         const openTasks = (e) => {
             this.setState({
                 dayId: e.target.id
@@ -97,7 +103,7 @@ export default class Productivity extends Component {
                     submit={submit}
                 />
 
-                {this.state.days.map(day => {
+                {this.props.days.map(day => {
                     return(
                         <div className="date-wrapper" key={day.id}>
                         <div className="date">
@@ -111,8 +117,23 @@ export default class Productivity extends Component {
                         </div>
                     </div>
                     )
-                })}                
+                })} 
+                {this.props.days.length === 0 ? (<h5>No day</h5>) : null}
+                date from store: {this.props.date} <br />
             </div>
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        days: state.days,
+        date: state.date
+    }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+        setDays: (days) => dispatch(setDays(days))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Productivity);
