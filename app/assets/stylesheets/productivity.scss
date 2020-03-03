@@ -1,15 +1,29 @@
+:root {
+    --main: rgb(218, 40, 40);
+    --gradient: linear-gradient(rgb(202, 97, 27), var(--main));
+}
+
 .productivity{
-    padding-top: 2rem;
-    margin-left: 1rem;
-    color: rgb(136, 6, 6);
-    width: 60%;
+    width: 80%;
+
+    color: var(--main);
     margin: 0 auto;
+    position: relative;
+}
+
+.date-container{
+    padding: 1rem;
+    border-radius: 40px;
+    box-shadow: 1px 2px 4px 2px rgb(189, 185, 185);
+    display: flex;
+    flex-wrap: wrap;
+    // border: 1px solid var(--primary);
 }
 
 .date-wrapper{
     background-color: rgb(255, 255, 255);
-    width: 30%;
-    box-shadow: 2px 2px 4px rgb(189, 185, 185);
+    width: 100%;
+    box-shadow: -2px 2px 4px 2px rgb(189, 185, 185);
     padding: .5rem;
     margin-bottom: 1rem;
 
@@ -18,8 +32,8 @@
 }
 
 .date{
-    // background-color: rgb(235, 156, 66);
-    box-shadow: -2px 2px 4px rgb(189, 185, 185);
+    background: var(--gradient);
+    box-shadow: 2px 2px 4px 3px rgb(189, 185, 185);
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
@@ -29,6 +43,8 @@
     text-align: center;
     line-height: 4rem;
     position: relative;
+
+    color: whitesmoke;
 }
 
 .date span{
@@ -36,9 +52,7 @@
     font-size: .5rem;
     left: 0;
     // background-color: rgb(168, 140, 140);
-
     text-transform: uppercase;
-    color: rgb(109, 47, 47);
     top: -1.4rem;
     width: 100%;
 }
@@ -50,9 +64,9 @@
     width: 70%;
 
     span{
-        background-color: rgb(243, 237, 237);
-        width: 1.5rem;
-        height: 1.5rem;
+        // background-color: rgb(243, 237, 237);
+        width: 1.8rem;
+        height: 1.8rem;
         text-align: center;
         border-radius: 50%;
         cursor: pointer;
@@ -61,6 +75,21 @@
     }
 
     span:hover{
-        background-color: rgb(221, 196, 196);;
+        border: 1px solid rgb(235, 176, 149);
+        color: rgb(219, 90, 4);
     }
+
+    span:active{
+        color: chocolate;
+    }
+}
+
+
+.spinner{
+    margin: 0 auto;
+    font-size: 1rem;
+    background-color: rgb(228, 114, 38);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
 }

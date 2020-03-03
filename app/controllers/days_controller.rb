@@ -10,7 +10,7 @@ class DaysController < ApplicationController
         @day = Day.create(day_params)
         render json: @day
     end
-
+    
     private 
     def day_params
         params.require(:day).permit(:chosen_date)

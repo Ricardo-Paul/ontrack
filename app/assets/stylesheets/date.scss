@@ -1,0 +1,25 @@
+.addDay{
+    background: var(--gradient);
+    outline: none;
+    padding: .3rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    color: rgb(255, 255, 255);
+    top: .5rem;
+    right: 1rem;
+    width: 6rem;
+}
+
+.dateInput{
+    color: rgb(143, 135, 135);
+    border-radius: 5px;
+    padding: .3rem;
+    width: 15%;
+    border: 1px solid rgb(145, 10, 10);
+    display: none;
+    position: absolute;
+    top: 3rem;
+    right: 1rem;
+}

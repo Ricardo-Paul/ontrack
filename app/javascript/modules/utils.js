@@ -7,7 +7,12 @@ const helpers = {
     extractDate: function(date){
         let dayNumber = date.split("-")[2]
         return dayNumber
+    },
+    extractMonth: function(date){
+        let month = new Date(date).toDateString().split(" ")[1]
+        return month
     }
 }
+
 
 export default helpers;

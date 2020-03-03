@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { connect } from 'react-redux'
 
-export default class Task extends Component {
+// redux
+import {addTask, setDayId } from '../redux/actions';
+class Task extends Component {
+
+    state = {
+        title: ''
+    }
 
     returnTasks(){
         if(this.props.tasks == 0){
@@ -17,16 +24,68 @@ export default class Task extends Component {
     }
 
     render() {
+        const submit = (e) => {
+            e.preventDefault()
+            const { dayId, addTask } = this.props;
+
+            const data = {
+                "task":{
+                    "title": this.state.title,
+                    "done": "false",
+                    "day_id": dayId
+                }
+            }
+            axios.post('/api/tasks', data)
+             .then(res => {
+                addTask(res.data.task)
+             })
+
+             this.setState({
+                 title: ""
+             })
+        }
+
+        const handleTitleChange = (e) => {
+            this.setState({
+                title: e.target.value
+            })
+        }
+
         return (
-            <div id="task">
+            <div className="col-md-6 col-xs-10" id="task">
                 Day id here {this.props.day_id}
                 <span className="closeTask" onClick={this.props.closeTask} > X </span>
                 <div className="form-input">
-                    <input className="input" type="text" placeholder="Add a Task..." />
-                    <button className="add" onClick={this.props.submit} > ADD </button>
+                    <form onSubmit={submit}>
+                    <input 
+                        className="input" 
+                        type="text" 
+                        placeholder="Add a Task..."
+                        onChange={handleTitleChange}
+                        value={this.state.title}
+                        />
+                    <button 
+                        className="add" 
+                        >
+                        ADD 
+                    </button>
+                    </form>
                 </div>
                 {this.returnTasks()}
             </div>
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+        dayId: state.dayId,
+        tasks: state.tasks
+})
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addTask: (task) => dispatch(addTask(task))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Task)
