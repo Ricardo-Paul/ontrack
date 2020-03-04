@@ -4,7 +4,8 @@ import { SET_DAYS,
     SET_DAY_ID, 
     ADD_TASK, 
     ADD_DAY,
-    LOADING
+    LOADING,
+    SET_PAGE_NUMBER
 } from "./action-types"
 
 const initialState = {
@@ -12,7 +13,8 @@ const initialState = {
     date: '28',
     dayId: '',
     loading: false,
-    tasks: []
+    tasks: [],
+    pageNumber: '1'
 }
 
 export const dayReducer = (state = initialState, action) => {
@@ -53,6 +55,11 @@ export const dayReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true
+            }
+        case SET_PAGE_NUMBER:
+            return {
+                ...state,
+                pageNumber: action.payload
             }
         default: 
             return state

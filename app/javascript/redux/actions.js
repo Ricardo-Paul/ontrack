@@ -4,7 +4,9 @@ import { SET_DAYS,
         SET_DAY_ID, 
         ADD_TASK, 
         ADD_DAY,
-        LOADING } 
+        LOADING,
+        SET_PAGE_NUMBER
+    } 
         from "./action-types";
 
 export const setDays = (payload) => {
@@ -33,4 +35,8 @@ export const addDay = (payload) => {
 
 export const setLoading = () => {
     return {type: LOADING}
+}
+
+export const setPageNumber = (payload) => {
+    return {type: SET_PAGE_NUMBER, payload}
 }

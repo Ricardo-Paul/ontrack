@@ -1,6 +1,7 @@
 :root {
-    --main: rgb(218, 40, 40);
-    --gradient: linear-gradient(rgb(202, 97, 27), var(--main));
+    --main: rgb(137, 141, 136);
+    --gradient1: linear-gradient(rgb(73, 187, 7), var(--main));
+    --gradient: rgb(223, 109, 2);
 }
 
 .productivity{
@@ -13,7 +14,7 @@
 
 .date-container{
     padding: 1rem;
-    border-radius: 40px;
+    border-radius: 5px;
     box-shadow: 1px 2px 4px 2px rgb(189, 185, 185);
     display: flex;
     flex-wrap: wrap;
@@ -23,25 +24,25 @@
 .date-wrapper{
     background-color: rgb(255, 255, 255);
     width: 100%;
-    box-shadow: -2px 2px 4px 2px rgb(189, 185, 185);
+    // box-shadow: -2px 2px 4px 2px rgb(189, 185, 185);
     padding: .5rem;
     margin-bottom: 1rem;
-
-    border-radius: 40px;
+    border: 1px solid rgb(173, 165, 165);
+    border-radius: 5px;
     display: flex;
 }
 
 .date{
     background: var(--gradient);
-    box-shadow: 2px 2px 4px 3px rgb(189, 185, 185);
-    width: 4rem;
-    height: 4rem;
+    // box-shadow: 2px 2px 4px 3px rgb(189, 185, 185);
+    width: 3rem;
+    height: 3rem;
     border-radius: 50%;
     margin-right: .2rem;
 
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-align: center;
-    line-height: 4rem;
+    line-height: 3rem;
     position: relative;
 
     color: whitesmoke;
@@ -53,15 +54,18 @@
     left: 0;
     // background-color: rgb(168, 140, 140);
     text-transform: uppercase;
-    top: -1.4rem;
+    top: -1rem;
     width: 100%;
 }
 
 .icons{
+    // background-color: rgb(207, 151, 151);
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 70%;
+    margin-left: .5rem;
+
 
     span{
         // background-color: rgb(243, 237, 237);
@@ -85,11 +89,25 @@
 }
 
 
-.spinner{
+.spinner-wrapper{
     margin: 0 auto;
+}
+
+.spinner{
+    display: block;
     font-size: 1rem;
     background-color: rgb(228, 114, 38);
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
+    margin: 0 auto;
+}
+
+.date-header{
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 1rem;
+    margin: 0 auto;
+    margin-bottom: 1rem;
 }

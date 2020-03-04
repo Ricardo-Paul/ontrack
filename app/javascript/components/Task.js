@@ -12,7 +12,7 @@ class Task extends Component {
 
     returnTasks(){
         if(this.props.tasks == 0){
-            return (<h5> No Task Yet </h5>)
+            return (<p className="task-empty" >Please add a new task </p>)
         }
         return (
             <ul>
@@ -89,3 +89,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Task)
+
+// TODO Day.find_by(chosen_date: "2020-03-03")

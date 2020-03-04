@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import Task from './Task';
 import Date from './Date';
+import Paginate from './Paginate';
 
 // FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,9 +11,8 @@ import { faCoffee, faListAlt, faStick } from '@fortawesome/free-solid-svg-icons'
 // Spinner
 import { Spinner } from './Spinner';
 
-
 import { connect } from 'react-redux';
-import { setDays, setTasks, setDayId, setLoading } from '../redux/actions';
+import { setDays, setTasks, setDayId, setLoading, setPageNumber } from '../redux/actions';
 
 
 // imports
@@ -24,7 +24,10 @@ class Productivity extends Component {
     extractDate = helpers.extractDate;
     extractMonth = helpers.extractMonth;
     state = {
-        dayId: ''
+        dayId: '',
+        pageNumber: 1,
+        dayPerPage: 2,
+        totalDays: ''
     }
 
     fetchTask(day_id){
@@ -39,13 +42,21 @@ class Productivity extends Component {
         task.style.transform = s
     }
 
+
     componentDidMount(){
         this.props.setLoading()
+            
         axios.get('/api/days')
             .then(res => {
-                let days = res.data.reverse().slice(-5)
+                this.setState({
+                    totalDays: res.data
+                })
+                // let days = res.data.reverse().slice(-5) 
+                let lastIndex = this.props.pageNumber * this.state.dayPerPage;
+                let firstIndex = lastIndex - this.state.dayPerPage;
+                let paginatedDays = res.data.reverse().slice(firstIndex, lastIndex)             
                 setTimeout(() => {
-                    this.props.setDays(days)
+                    this.props.setDays(paginatedDays)
                 }, 900)
             })
     }
@@ -77,6 +88,28 @@ class Productivity extends Component {
             })
         }
 
+        const extractPaginatedDays = (data) => {
+            let lastIndex = this.props.pageNumber * this.state.dayPerPage;
+            let firstIndex = lastIndex - this.state.dayPerPage;
+            let paginatedDays = data.reverse().slice(firstIndex, lastIndex)
+
+            return {
+                data,
+                paginatedDays
+            }
+        }
+
+        const setPageNumber = (page) => {
+            this.props.setPageNumber(page)
+            axios.get('/api/days')
+                .then(res => {
+                    const { paginatedDays } = extractPaginatedDays(res.data);
+                    setTimeout(() => {
+                        this.props.setDays(paginatedDays)
+                    }, 100)
+                })
+        }
+
         return (
             <div className="productivity">
                 <div className="overlay"></div>
@@ -88,7 +121,8 @@ class Productivity extends Component {
                 />
 
                 <div className="date-container col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                { this.props.loading ? (<span> <Spinner /> Loading... </span>) :
+                <h3 className="date-header" > Days of Activity </h3>
+                { this.props.loading ? (<span className="spinner-wrapper" > <Spinner /> Loading... </span>) :
                     this.props.days.map(day => {
                     return(
                         <div className="date-wrapper" key={day.id}>
@@ -107,7 +141,11 @@ class Productivity extends Component {
                     )
                 })
                 }
-                {/* {this.props.days.length === 0 ? (<p>Loading...</p>) : null} */}
+                <Paginate 
+                    totalDays={this.state.totalDays.length}
+                    dayPerPage={this.state.dayPerPage}
+                    setPageNumber={setPageNumber}
+                    />
                 </div>
                 <Date />
             </div>
@@ -121,7 +159,8 @@ const mapStateToProps = state => {
         tasks: state.tasks,
         dayId: state.dayId,
 
-        loading: state.loading
+        loading: state.loading,
+        pageNumber: state.pageNumber
     }
 }
 
@@ -129,7 +168,8 @@ const mapDispatchToProps = (dispatch) => ({
         setDays: (days) => dispatch(setDays(days)),
         setTasks: (tasks) => dispatch(setTasks(tasks)),
         setDayId: (id) => dispatch(setDayId(id)),
-        setLoading: () => dispatch(setLoading())
+        setLoading: () => dispatch(setLoading()),
+        setPageNumber: (pageNumber) => dispatch(setPageNumber(pageNumber))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Productivity);

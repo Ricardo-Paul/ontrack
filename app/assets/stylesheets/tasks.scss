@@ -1,40 +1,65 @@
-// Place all the styles related to the Tasks controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 #task{
+    color: rgb(99, 93, 93);
     background-color: rgb(255, 255, 255);
-    box-shadow: 0px 3px 3px rgb(223, 217, 217);
+    box-shadow: 1px 2px 4px 2px rgb(189, 185, 185);
     position: absolute;
     z-index: 100;
-    // width: 50%;
     padding: 1rem;
+    border-radius: 5px;
     left: 30%;
-    transform: scale(1);
-
-
+    transform: scale(0);
+    
     .input{
-        width: 90%;
+        outline: none;
+        width: 88%;
         margin: 0 auto;
+        border: 1.5px solid var(--main);
+        border-radius: 5px;
+        padding: .2rem;
+        font-size: .7rem;
     }
 
     .add{
         width: 10%;
         position: absolute;
         right: 1rem;
+        background: var(--gradient);
+        border: none;
+        border-radius: 5px;
+        padding: .2rem;
+        font-size: .8rem;
     }
     .closeTask{
+        position: absolute;
+        top: .5rem;
+        right: -.2rem;
+        width: 1rem;
+        background: var(--main);
+        cursor: pointer;
+        color: whitesmoke;
         display: block;
-        text-align: right;
-        margin-bottom: .2rem;
+        margin-bottom: 2rem;
+        margin-right: 1rem;
+        text-align: center;
+        border-radius: 50%;
+        width: 1.3rem;
+        height: 1.3rem;
+        font-size: .7rem;
+        line-height: 1.3rem;
+    }
+
+    .closeTask:hover{
+        background-color: var(--gradient);
     }
 
     .form-input{
         margin-bottom: 1rem;
+        margin-top: 2rem;
     }
 
     ul{
         list-style-type: none;
+        color: rgb(109, 107, 107);
 
         li{
             display: flex;
@@ -48,4 +73,9 @@
 .col-xs-10{
     position: absolute;
     left: 0;
+}
+
+.task-empty{
+    color: rgb(170, 169, 166);
+    text-align: center;
 }
