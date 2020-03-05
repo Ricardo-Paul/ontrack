@@ -1,18 +1,22 @@
 class DaysController < ApplicationController
+    before_action :check_authorization, only: [:index, :create]
+
     def main
     end
     
     def index
-       render json: @days = Day.all.order("created_at DESC")
+        @days = @current_user.days.order("created_at DESC")
+        render json: @days
     end
-
-    def create 
-        @day = Day.create(day_params)
+    
+    def create
+        @day = @current_user.days.build(day_params)
+        @day.save
         render json: @day
     end
     
     private 
     def day_params
-        params.require(:day).permit(:chosen_date)
+        params.require(:day).permit(:chosen_date, :user_id)
     end
 end

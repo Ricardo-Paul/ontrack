@@ -5,6 +5,10 @@ import { setDays, setDate, addTask } from '../redux/actions'
 import store from '../redux/store'
 import { Provider } from 'react-redux'
 
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Login from '../pages/Login'
+
+
 window.store = store
 window.setDays = setDays
 window.setDate = setDate
@@ -15,6 +19,7 @@ import '../../assets/stylesheets/productivity'
 import '../../assets/stylesheets/tasks'
 import '../../assets/stylesheets/application'
 import '../../assets/stylesheets/date'
+import '../../assets/stylesheets/paginate'
 
 
 
@@ -22,9 +27,12 @@ export default class App extends Component {
     render() {
         return (
             <Provider store={store} >
-              <div className="App" >
-                <Productivity />
-              </div>
+              <Router>
+                <div className="App" >
+                  <Route exact path="/" component={Login} />
+                  <Route path="/home" component={Productivity}/>
+                 </div>
+              </Router>
             </Provider>
         )
     }

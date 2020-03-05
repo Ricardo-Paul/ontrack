@@ -1,0 +1,16 @@
+nav{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.page-button{
+    cursor: pointer;
+    background-color: white;
+    color: chocolate;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid var(--gradient);
+    margin-right: .2rem;
+}

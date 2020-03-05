@@ -79,12 +79,25 @@
     }
 
     span:hover{
+        // transform: scale(0);
         border: 1px solid rgb(235, 176, 149);
         color: rgb(219, 90, 4);
     }
 
     span:active{
-        color: chocolate;
+        color: rgb(241, 214, 194);
+    }
+
+    .icon-task{
+        color: rgb(192, 127, 127);
+    }
+
+    .icon-task:hover{
+        color: red;
+    }
+
+    .icon-task:active{
+        transform: scale(0);
     }
 }
 

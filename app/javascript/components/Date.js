@@ -23,7 +23,14 @@ class Date extends Component {
                 "chosen_date": e.target.value
             }
         }
-        axios.post('/api/days', data)
+
+        const authorization = {
+            headers: {
+                'Authorization': localStorage.getItem('token')
+            }
+        }
+
+        axios.post('/api/days', data, authorization)
             .then(res => {
                 setTimeout(() => {
                     this.props.addDay(res.data)

@@ -11,3 +11,5 @@
 		"chosen_date": "2020-03-02"
 	}
 }
+
+User.create(name: "Alex", email:"alex@gmail.com", password:"1234567", password_confirmation:"1234567")

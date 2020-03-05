@@ -6,7 +6,7 @@ import Paginate from './Paginate';
 
 // FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faListAlt, faStick } from '@fortawesome/free-solid-svg-icons'
+import { faStickyNote, faListAlt, faBookReader } from '@fortawesome/free-solid-svg-icons'
 
 // Spinner
 import { Spinner } from './Spinner';
@@ -26,7 +26,7 @@ class Productivity extends Component {
     state = {
         dayId: '',
         pageNumber: 1,
-        dayPerPage: 2,
+        dayPerPage: 4,
         totalDays: ''
     }
 
@@ -42,22 +42,34 @@ class Productivity extends Component {
         task.style.transform = s
     }
 
+    authorizeUser(){
+        const authorization = {
+            headers:{
+                'Authorization': localStorage.getItem("token")
+            }
+        }
+        return {
+            authorization
+        }
+    }
+
 
     componentDidMount(){
         this.props.setLoading()
-            
-        axios.get('/api/days')
+        const { authorization } = this.authorizeUser();
+        axios.get('/api/days', authorization)
             .then(res => {
                 this.setState({
                     totalDays: res.data
                 })
-                // let days = res.data.reverse().slice(-5) 
                 let lastIndex = this.props.pageNumber * this.state.dayPerPage;
                 let firstIndex = lastIndex - this.state.dayPerPage;
                 let paginatedDays = res.data.reverse().slice(firstIndex, lastIndex)             
                 setTimeout(() => {
                     this.props.setDays(paginatedDays)
                 }, 900)
+
+                console.log(res.data)
             })
     }
 
@@ -101,7 +113,8 @@ class Productivity extends Component {
 
         const setPageNumber = (page) => {
             this.props.setPageNumber(page)
-            axios.get('/api/days')
+            const { authorization } = this.authorizeUser();
+            axios.get('/api/days', authorization)
                 .then(res => {
                     const { paginatedDays } = extractPaginatedDays(res.data);
                     setTimeout(() => {
@@ -121,7 +134,7 @@ class Productivity extends Component {
                 />
 
                 <div className="date-container col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <h3 className="date-header" > Days of Activity </h3>
+                <h3 className="date-header" > Days of Activity {this.props.pageNumber} </h3>
                 { this.props.loading ? (<span className="spinner-wrapper" > <Spinner /> Loading... </span>) :
                     this.props.days.map(day => {
                     return(
@@ -132,20 +145,27 @@ class Productivity extends Component {
                         </div>
                         <div className="icons">
                             <span className="taskIcon" id={day.id} onClick={(e) => openTasks(e)} >
-                                T
+                                <FontAwesomeIcon className="icon-task" icon={faListAlt} />
                             </span>
-                            <span>N</span>
-                            <span>L</span>
+                            <span>
+                                <FontAwesomeIcon className="icon" icon={faStickyNote} />
+                            </span>
+                            <span>
+                                <FontAwesomeIcon className="icon" icon={faBookReader} />
+                            </span>
                         </div>
                     </div>
                     )
                 })
                 }
-                <Paginate 
+                {!this.props.loading &&
+                    <Paginate 
                     totalDays={this.state.totalDays.length}
                     dayPerPage={this.state.dayPerPage}
                     setPageNumber={setPageNumber}
                     />
+                }
+
                 </div>
                 <Date />
             </div>
