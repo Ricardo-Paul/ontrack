@@ -135,6 +135,7 @@ class Productivity extends Component {
 
                 <div className="date-container col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <h3 className="date-header" > Days of Activity {this.props.pageNumber} </h3>
+                {this.props.days.length === 0 && (<p> Please add a new day record </p>) }
                 { this.props.loading ? (<span className="spinner-wrapper" > <Spinner /> Loading... </span>) :
                     this.props.days.map(day => {
                     return(
@@ -158,6 +159,7 @@ class Productivity extends Component {
                     )
                 })
                 }
+
                 {!this.props.loading &&
                     <Paginate 
                     totalDays={this.state.totalDays.length}

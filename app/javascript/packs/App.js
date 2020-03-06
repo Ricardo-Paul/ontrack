@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Login from '../pages/Login'
-
+import Signup from '../pages/Signup'
 
 window.store = store
 window.setDays = setDays
@@ -22,7 +22,6 @@ import '../../assets/stylesheets/date'
 import '../../assets/stylesheets/paginate'
 
 
-
 export default class App extends Component {
     render() {
         return (
@@ -31,6 +30,7 @@ export default class App extends Component {
                 <div className="App" >
                   <Route exact path="/" component={Login} />
                   <Route path="/home" component={Productivity}/>
+                  <Route path="/signup" component={Signup} />
                  </div>
               </Router>
             </Provider>

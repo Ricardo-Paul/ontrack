@@ -12,4 +12,4 @@
 	}
 }
 
-User.create(name: "Alex", email:"alex@gmail.com", password:"1234567", password_confirmation:"1234567")
+User.create(name: "Ricardo Paul", email:"ricardo459@gmail.com", password:"1234567", password_confirmation:"1234567")

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  get '/home', to: 'days#main'
-  root to: 'days#main' #login route
+  get '/home', '/signup', to: 'days#main'
+  root to: 'days#main'
 
   scope '/api' do
     resources :users
