@@ -1,8 +1,7 @@
 class SessionsController < ApplicationController
     def create
-        
         if !@user = User.find_by(email: params[:user][:email])
-            render json: {message: "User not found"}
+            render json: {error: "User not found"}
         else
             @user.valid_password?(params[:user][:password])
             @user.auth_token = Devise.friendly_token()
@@ -11,7 +10,6 @@ class SessionsController < ApplicationController
             
             render json: @user
         end
-
     end
 
     def destroy
