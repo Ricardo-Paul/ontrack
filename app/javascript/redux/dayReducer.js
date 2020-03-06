@@ -14,6 +14,7 @@ const initialState = {
     dayId: '',
     loading: false,
     tasks: [],
+    notes: [],
     pageNumber: '1'
 }
 

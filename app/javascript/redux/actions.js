@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import { SET_DAYS, 
         SET_DATE, 
         SET_TASKS, 
@@ -39,4 +41,22 @@ export const setLoading = () => {
 
 export const setPageNumber = (payload) => {
     return {type: SET_PAGE_NUMBER, payload}
+}
+
+export const fetchNote = (dayId) => {
+    // const { dayId } =  this.props;
+    return function(dispatch){
+        dispatch(setLoading())
+        console.log('dayId here', dayId)
+        axios({
+            method: 'get',
+            url: '/api/getNotes/',
+            params: {
+                day_id: dayId
+            }
+        })
+        .then(res => {
+            console.log(res.data)
+        })
+    }
 }

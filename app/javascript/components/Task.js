@@ -53,7 +53,7 @@ class Task extends Component {
 
         return (
             <div className="col-md-6 col-xs-10" id="task">
-                Day id here {this.props.day_id}
+                Day id here {this.props.dayId}
                 <span className="closeTask" onClick={this.props.closeTask} > X </span>
                 <div className="form-input">
                     <form onSubmit={submit}>

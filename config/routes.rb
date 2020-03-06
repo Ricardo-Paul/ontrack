@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :lessons
     resource :sessions
 
+    get 'getNotes', to: 'notes#getNotes'
     get 'getTasks', to: 'tasks#find_tasks'
     get 'toggleDone', to: 'tasks#toggle_done'
   end

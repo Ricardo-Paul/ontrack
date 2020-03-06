@@ -5,9 +5,7 @@ class DaysController < ApplicationController
     end
     
     def index
-
-        # @days = @current_user.days.order("created_at DESC")
-        @days = Day.where(user_id: @current_user.id)
+        @days = Day.where(user_id: @current_user.id).order("created_at DESC")
         render json: @days
     end
     

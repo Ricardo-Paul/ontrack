@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+
 import Task from './Task';
+import Note from './Note';
 import Date from './Date';
 import Paginate from './Paginate';
 
@@ -13,7 +15,6 @@ import { Spinner } from './Spinner';
 
 import { connect } from 'react-redux';
 import { setDays, setTasks, setDayId, setLoading, setPageNumber } from '../redux/actions';
-
 
 // imports
 import helpers from '../modules/utils';
@@ -76,6 +77,7 @@ class Productivity extends Component {
     render() {
         const {setTasks, setDayId} = this.props;
 
+
         const openTasks = (e) => {
             setDayId(e.target.id)
             this.fetchTask(e.target.id)
@@ -133,6 +135,8 @@ class Productivity extends Component {
                     toggleDone={toggleDone}
                 />
 
+                <Note />
+
                 <div className="date-container col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <h3 className="date-header" > Days of Activity {this.props.pageNumber} </h3>
                 {this.props.days.length === 0 && (<p> Please add a new day record </p>) }
@@ -148,7 +152,7 @@ class Productivity extends Component {
                             <span className="taskIcon" id={day.id} onClick={(e) => openTasks(e)} >
                                 <FontAwesomeIcon className="icon-task" icon={faListAlt} />
                             </span>
-                            <span>
+                            <span id={day.id} onClick={() => this.props.setDayId(day.id)} >
                                 <FontAwesomeIcon className="icon" icon={faStickyNote} />
                             </span>
                             <span>
