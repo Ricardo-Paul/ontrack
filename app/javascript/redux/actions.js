@@ -7,7 +7,8 @@ import { SET_DAYS,
         ADD_TASK, 
         ADD_DAY,
         LOADING,
-        SET_PAGE_NUMBER
+        SET_PAGE_NUMBER,
+        SET_NOTE
     } 
         from "./action-types";
 
@@ -43,10 +44,12 @@ export const setPageNumber = (payload) => {
     return {type: SET_PAGE_NUMBER, payload}
 }
 
-export const fetchNote = (dayId) => {
-    // const { dayId } =  this.props;
-    return function(dispatch){
-        dispatch(setLoading())
+export const setNote = (payload) => {
+    return {type: SET_NOTE, payload}
+}
+
+export const fetchNote = (dayId) => (dispatch) => {
+        // dispatch(setLoading())
         console.log('dayId here', dayId)
         axios({
             method: 'get',
@@ -56,7 +59,9 @@ export const fetchNote = (dayId) => {
             }
         })
         .then(res => {
+            dispatch(setNote(res.data))
             console.log(res.data)
         })
-    }
 }
+
+// 

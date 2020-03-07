@@ -5,7 +5,8 @@ import { SET_DAYS,
     ADD_TASK, 
     ADD_DAY,
     LOADING,
-    SET_PAGE_NUMBER
+    SET_PAGE_NUMBER,
+    SET_NOTE
 } from "./action-types"
 
 const initialState = {
@@ -61,6 +62,11 @@ export const dayReducer = (state = initialState, action) => {
             return {
                 ...state,
                 pageNumber: action.payload
+            }
+        case SET_NOTE:
+            return{
+                ...state,
+                notes: action.payload
             }
         default: 
             return state

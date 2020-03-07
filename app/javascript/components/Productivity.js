@@ -14,7 +14,7 @@ import { faStickyNote, faListAlt, faBookReader } from '@fortawesome/free-solid-s
 import { Spinner } from './Spinner';
 
 import { connect } from 'react-redux';
-import { setDays, setTasks, setDayId, setLoading, setPageNumber } from '../redux/actions';
+import { setDays, setTasks, setDayId, setLoading, setPageNumber, fetchNote } from '../redux/actions';
 
 // imports
 import helpers from '../modules/utils';
@@ -152,7 +152,10 @@ class Productivity extends Component {
                             <span className="taskIcon" id={day.id} onClick={(e) => openTasks(e)} >
                                 <FontAwesomeIcon className="icon-task" icon={faListAlt} />
                             </span>
-                            <span id={day.id} onClick={() => this.props.setDayId(day.id)} >
+                            <span id={day.id} onClick={() => {
+                                this.props.setDayId(day.id)
+                                this.props.fetchNote(this.props.dayId)
+                            }} >
                                 <FontAwesomeIcon className="icon" icon={faStickyNote} />
                             </span>
                             <span>
@@ -195,7 +198,9 @@ const mapDispatchToProps = (dispatch) => ({
         setTasks: (tasks) => dispatch(setTasks(tasks)),
         setDayId: (id) => dispatch(setDayId(id)),
         setLoading: () => dispatch(setLoading()),
-        setPageNumber: (pageNumber) => dispatch(setPageNumber(pageNumber))
+        setPageNumber: (pageNumber) => dispatch(setPageNumber(pageNumber)),
+        fetchNote: (dayId) => dispatch(fetchNote(dayId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Productivity);
+// 
