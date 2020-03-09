@@ -64,4 +64,21 @@ export const fetchNote = (dayId) => (dispatch) => {
         })
 }
 
-// 
+export const postNote = (title, content, dayId) => (dispatch) => {
+    console.log('clicked', dayId)
+
+    axios({
+        method: 'post',
+        url: '/api/notes',
+        data: {
+            note :{
+                title: title,
+                content: content,
+                day_id: dayId
+            }
+        }
+    })
+    .then( res => {
+        console.log(res.data)
+    })
+}

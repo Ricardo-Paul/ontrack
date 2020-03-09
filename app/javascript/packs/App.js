@@ -20,6 +20,8 @@ import '../../assets/stylesheets/tasks'
 import '../../assets/stylesheets/application'
 import '../../assets/stylesheets/date'
 import '../../assets/stylesheets/paginate'
+import '../../assets/stylesheets/navbar'
+import '../../assets/stylesheets/notes'
 
 
 export default class App extends Component {

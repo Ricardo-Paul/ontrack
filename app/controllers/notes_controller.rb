@@ -4,8 +4,12 @@ class NotesController < ApplicationController
     end
 
     def create
-        @note  = Note.create(note_params)
-        render json: {note: @note, message: "Note saved"}
+        @note  = Note.new(note_params)
+            if @note.save
+                render json: @note
+            else
+                render json: @note.errors
+            end
     end
 
     def getNotes

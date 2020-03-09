@@ -5,6 +5,8 @@ import Task from './Task';
 import Note from './Note';
 import Date from './Date';
 import Paginate from './Paginate';
+import Navbar from './Navbar';
+
 
 // FontAwesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -19,7 +21,6 @@ import { setDays, setTasks, setDayId, setLoading, setPageNumber, fetchNote } fro
 // imports
 import helpers from '../modules/utils';
 const { extractDate, extractMonth } = helpers;
-
 
 class Productivity extends Component {
     extractDate = helpers.extractDate;
@@ -84,6 +85,11 @@ class Productivity extends Component {
             this.toggleTaskModal("scale(1)", .5, "block")
         }
 
+        const openNote = () => {
+            let note = document.querySelector(".note")
+            note.style.transform = "scale(1)"
+        }
+
         const closeTask = () => {
             this.toggleTaskModal("scale(0)", 0, "none")
         }
@@ -127,6 +133,7 @@ class Productivity extends Component {
 
         return (
             <div className="productivity">
+            <Navbar />
                 <div className="overlay"></div>
                 <Task 
                     day_id={this.props.dayId} 
@@ -135,8 +142,8 @@ class Productivity extends Component {
                     toggleDone={toggleDone}
                 />
 
-                <Note />
-
+                <div className="page-body">
+                    <Note />
                 <div className="date-container col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <h3 className="date-header" > Days of Activity {this.props.pageNumber} </h3>
                 {this.props.days.length === 0 && (<p> Please add a new day record </p>) }
@@ -153,6 +160,7 @@ class Productivity extends Component {
                                 <FontAwesomeIcon className="icon-task" icon={faListAlt} />
                             </span>
                             <span id={day.id} onClick={() => {
+                                openNote()
                                 this.props.setDayId(day.id)
                                 this.props.fetchNote(this.props.dayId)
                             }} >
@@ -174,9 +182,9 @@ class Productivity extends Component {
                     setPageNumber={setPageNumber}
                     />
                 }
-
                 </div>
                 <Date />
+                </div>
             </div>
         )
     }
