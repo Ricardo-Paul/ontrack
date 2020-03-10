@@ -51,23 +51,25 @@ class Note extends Component {
                   onChange={this.setTitle}
                 />
                     <RichTextEditor 
+                    className="richText"
                     value={this.state.value}
                     placeholder="start typing note..."
                     onChange={this.onChange} />
-                    {this.state.title}
+                    <button onClick={() => this.props.postNote(this.state.title, this.state.content, this.props.dayId,)}> 
+                        Save Note 
+                    </button>
                 </div>
             )
         }
 
         return (
-            <div className="col-xl-6 col-lg-6 mx-4 note">
+            <div className="note">
                 <div className="close-note"> x </div>
                 {this.props.dayId} Note Taking
 
                 Notes for this day
-                
+
                 {displayEditor()}
-                <button onClick={() => this.props.postNote(this.state.title, this.state.content, this.props.dayId,)}> Save Note </button>
             </div>
         )
     }

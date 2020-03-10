@@ -135,6 +135,8 @@ class Productivity extends Component {
             <div className="productivity">
             <Navbar />
                 <div className="overlay"></div>
+                <div className="page-body">
+
                 <Task 
                     day_id={this.props.dayId} 
                     closeTask={closeTask} 
@@ -142,9 +144,8 @@ class Productivity extends Component {
                     toggleDone={toggleDone}
                 />
 
-                <div className="page-body">
                     <Note />
-                <div className="date-container col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div className="date-container">
                 <h3 className="date-header" > Days of Activity {this.props.pageNumber} </h3>
                 {this.props.days.length === 0 && (<p> Please add a new day record </p>) }
                 { this.props.loading ? (<span className="spinner-wrapper" > <Spinner /> Loading... </span>) :

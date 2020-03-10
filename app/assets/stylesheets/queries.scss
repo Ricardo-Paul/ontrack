@@ -1,0 +1,50 @@
+
+
+@media all and (max-width: 1024px){
+		.date-container{
+			width: 45%;
+		}
+	}
+
+@media all and (max-width: 768px){
+		.date-container{
+			width: 44%;
+		}
+	}
+
+@media all and (max-width: 425px){
+		#task{
+			width: 100%;
+			left: 0;
+			right: 0;
+			height: 26rem;
+
+			.input{
+				width: 84%;
+			}
+
+			.add{
+				width: 12%;
+				font-size: .6rem;
+				padding: .4rem;
+				text-align: center;
+			}
+		}
+
+		.note, .editor{
+			width: 100%;
+			left: 0;
+			right: 0;
+			min-height: 26rem;
+		}
+
+		.editor{
+			/*position: absolute;*/
+		}
+		.date-container{
+			display: block;
+			position: absolute;
+			top: 4rem;
+			width: 100%;
+		}
+	}

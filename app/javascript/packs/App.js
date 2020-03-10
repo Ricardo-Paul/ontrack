@@ -22,6 +22,8 @@ import '../../assets/stylesheets/date'
 import '../../assets/stylesheets/paginate'
 import '../../assets/stylesheets/navbar'
 import '../../assets/stylesheets/notes'
+import '../../assets/stylesheets/queries'
+
 
 
 export default class App extends Component {
