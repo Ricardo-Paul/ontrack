@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { fetchNote, postNote } from '../redux/actions';
 import RichTextEditor from 'react-rte'
+import { CloseModalButton, DIV } from './commonStyle';
 
-// JoditEditor
-// import JoditEditor from "jodit-react"
+
 class Note extends Component {
- 
     state = {
         value: RichTextEditor.createEmptyValue(),
         content: 'hell',
@@ -24,10 +22,6 @@ class Note extends Component {
             value,
             content: content
         })
-
-        // if(this.props.onChange){
-        //     this.props.onChange(value.toString('html'))
-        // }
     }
 
     setTitle = (e) => {
@@ -36,12 +30,13 @@ class Note extends Component {
         })
     }
 
+
+	closeNote = () => {
+		let note = document.querySelector(".note")
+		note.style.transform = "scale(0)"
+	}
+
     render() {
-
-        const { notes } = this.props;
-        const { value } = this.state;
-
-
         const displayEditor = () => {
             return(
                 <div className="editor">
@@ -64,7 +59,11 @@ class Note extends Component {
 
         return (
             <div className="note">
-                <div className="close-note"> x </div>
+
+                <CloseModalButton onClick={this.closeNote}>
+                    x
+                </CloseModalButton>
+
                 {this.props.dayId} Note Taking
 
                 Notes for this day

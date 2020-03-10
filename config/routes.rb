@@ -15,5 +15,7 @@ Rails.application.routes.draw do
     get 'getNotes', to: 'notes#getNotes'
     get 'getTasks', to: 'tasks#find_tasks'
     get 'toggleDone', to: 'tasks#toggle_done'
+
+    get 'getLessons', to: 'lessons#getLessons'
   end
 end

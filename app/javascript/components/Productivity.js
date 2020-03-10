@@ -4,6 +4,7 @@ import axios from 'axios';
 import Task from './Task';
 import Note from './Note';
 import Date from './Date';
+import Lesson from './Lesson'
 import Paginate from './Paginate';
 import Navbar from './Navbar';
 
@@ -16,7 +17,15 @@ import { faStickyNote, faListAlt, faBookReader } from '@fortawesome/free-solid-s
 import { Spinner } from './Spinner';
 
 import { connect } from 'react-redux';
-import { setDays, setTasks, setDayId, setLoading, setPageNumber, fetchNote } from '../redux/actions';
+
+import { setDays, 
+    setTasks, 
+    setDayId, 
+    setLoading, 
+    setPageNumber, 
+    fetchNote, 
+    fetchLessons 
+} from '../redux/actions';
 
 // imports
 import helpers from '../modules/utils';
@@ -39,9 +48,45 @@ class Productivity extends Component {
             })
     }
 
-    toggleTaskModal(s, o, d){
+    openModal(window){
         let task = document.querySelector("#task")
-        task.style.transform = s
+        let note = document.querySelector(".note")
+        let lesson = document.querySelector(".lesson")
+        switch(window){
+            case "task":
+                lesson.style.transform = "scale(0)"
+                note.style.transform = "scale(0)"
+
+               return task.style.transform = "scale(1)"
+            case "note":
+                lesson.style.transform = "scale(0)"
+                task.style.transform = "scale(0)"
+
+                return note.style.transform = "scale(1)"
+            case "lesson":
+                note.style.transform = "scale(0)"
+                task.style.transform = "scale(0)"
+
+                return lesson.style.transform = "scale(1)"
+            default:
+                ""
+        }
+    }
+
+    closeModal(window){
+        let task = document.querySelector("#task")
+        let note = document.querySelector(".note")
+        let lesson = document.querySelector(".lesson")
+        switch(window){
+            case "task":
+               return task.style.transform = "scale(0)"
+            case "note":
+                return note.style.transform = "scale(0)"
+            case "lesson":
+                return lesson.style.transform = "scale(0)"
+            default:
+                ""
+        }
     }
 
     authorizeUser(){
@@ -54,7 +99,6 @@ class Productivity extends Component {
             authorization
         }
     }
-
 
     componentDidMount(){
         this.props.setLoading()
@@ -70,28 +114,16 @@ class Productivity extends Component {
                 setTimeout(() => {
                     this.props.setDays(paginatedDays)
                 }, 900)
-
-                console.log(res.data)
             })
     }
 
     render() {
         const {setTasks, setDayId} = this.props;
 
-
         const openTasks = (e) => {
             setDayId(e.target.id)
             this.fetchTask(e.target.id)
-            this.toggleTaskModal("scale(1)", .5, "block")
-        }
-
-        const openNote = () => {
-            let note = document.querySelector(".note")
-            note.style.transform = "scale(1)"
-        }
-
-        const closeTask = () => {
-            this.toggleTaskModal("scale(0)", 0, "none")
+            this.openModal("task")
         }
 
         const toggleDone = (id) => {
@@ -133,18 +165,14 @@ class Productivity extends Component {
 
         return (
             <div className="productivity">
-            <Navbar />
-                <div className="overlay"></div>
+                <Navbar />
+
                 <div className="page-body">
 
-                <Task 
-                    day_id={this.props.dayId} 
-                    closeTask={closeTask} 
-                    // tasks={this.props.tasks} 
-                    toggleDone={toggleDone}
-                />
-
+                    <Lesson />
+                    <Task day_id={this.props.dayId} toggleDone={toggleDone} />
                     <Note />
+
                 <div className="date-container">
                 <h3 className="date-header" > Days of Activity {this.props.pageNumber} </h3>
                 {this.props.days.length === 0 && (<p> Please add a new day record </p>) }
@@ -161,13 +189,20 @@ class Productivity extends Component {
                                 <FontAwesomeIcon className="icon-task" icon={faListAlt} />
                             </span>
                             <span id={day.id} onClick={() => {
-                                openNote()
+                                this.openModal("note")
                                 this.props.setDayId(day.id)
-                                this.props.fetchNote(this.props.dayId)
+                                this.props.fetchNote(day.id)
                             }} >
                                 <FontAwesomeIcon className="icon" icon={faStickyNote} />
                             </span>
-                            <span>
+                            <span
+                                id={day.id}
+                                onClick={() => {
+                                    this.openModal("lesson")
+                                    this.props.setDayId(day.id)
+                                    this.props.fetchLessons(day.id)
+                                }}
+                            >
                                 <FontAwesomeIcon className="icon" icon={faBookReader} />
                             </span>
                         </div>
@@ -208,8 +243,8 @@ const mapDispatchToProps = (dispatch) => ({
         setDayId: (id) => dispatch(setDayId(id)),
         setLoading: () => dispatch(setLoading()),
         setPageNumber: (pageNumber) => dispatch(setPageNumber(pageNumber)),
-        fetchNote: (dayId) => dispatch(fetchNote(dayId))
+        fetchNote: (dayId) => dispatch(fetchNote(dayId)),
+        fetchLessons: (dayId) => dispatch(fetchLessons(dayId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Productivity);
-// 

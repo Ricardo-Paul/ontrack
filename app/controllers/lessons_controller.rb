@@ -1,8 +1,18 @@
 class LessonsController < ApplicationController
 
+	def index
+		@lessons = Lesson.all 
+		render json: @lessons
+	end
+
     def create
         @lesson = Lesson.create(lesson_params)
         render json: {lesson: @lesson, message: "Great Keep Learning !!!"}
+    end
+
+    def getLessons
+    	@lessons = Lesson.where(day_id: params[:day_id])
+    	render json: @lessons
     end
 
     private

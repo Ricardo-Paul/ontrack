@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
+import { CloseModalButton } from './commonStyle';
+
 
 // redux
 import {addTask, setDayId } from '../redux/actions';
@@ -10,6 +12,11 @@ class Task extends Component {
         title: ''
     }
 
+    closeTask = () => {
+		let task = document.querySelector("#task")
+		task.style.transform = "scale(0)"
+    }
+    
     returnTasks(){
         if(this.props.tasks == 0){
             return (<p className="task-empty" >Please add a new task </p>)
@@ -54,7 +61,9 @@ class Task extends Component {
         return (
             <div className="col-md-6 col-xs-10" id="task">
                 Day id here {this.props.dayId}
-                <span className="closeTask" onClick={this.props.closeTask} > X </span>
+                <CloseModalButton onClick={this.closeTask} >
+                    x
+                </CloseModalButton>
                 <div className="form-input">
                     <form onSubmit={submit}>
                     <input 

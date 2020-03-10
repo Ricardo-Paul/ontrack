@@ -8,7 +8,8 @@ import { SET_DAYS,
         ADD_DAY,
         LOADING,
         SET_PAGE_NUMBER,
-        SET_NOTE
+        SET_NOTE,
+        SET_LESSONS
     } 
         from "./action-types";
 
@@ -48,6 +49,10 @@ export const setNote = (payload) => {
     return {type: SET_NOTE, payload}
 }
 
+export const setLessons = (payload) => {
+    return { type: SET_LESSONS, payload }
+}
+
 export const fetchNote = (dayId) => (dispatch) => {
         // dispatch(setLoading())
         console.log('dayId here', dayId)
@@ -66,7 +71,6 @@ export const fetchNote = (dayId) => (dispatch) => {
 
 export const postNote = (title, content, dayId) => (dispatch) => {
     console.log('clicked', dayId)
-
     axios({
         method: 'post',
         url: '/api/notes',
@@ -76,6 +80,37 @@ export const postNote = (title, content, dayId) => (dispatch) => {
                 content: content,
                 day_id: dayId
             }
+        }
+    })
+    .then( res => {
+        console.log(res.data)
+    })
+}
+
+
+// lessons -------------------------------------
+export const fetchLessons = (dayId) => (dispatch) => {
+    console.log('dayId here', dayId)
+    axios({
+        method: 'get',
+        url: '/api/getLessons/',
+        params: {
+            day_id: dayId
+        }
+    })
+    .then(res => {
+        console.log("lessons here",res.data)
+        dispatch(setLessons(res.data))
+    })
+}
+
+export const postLesson = (description, dayId) => (dispatch) => {
+    axios({
+        method: 'post',
+        url: '/api/lessons',
+        data: {
+            description: description,
+            day_id: dayId
         }
     })
     .then( res => {

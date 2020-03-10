@@ -8,3 +8,6 @@ export const LOADING = "LOADING"
 export const SET_PAGE_NUMBER = "SET_PAGE_NUMBER"
 export const SET_NOTE = "SET_NOTE"
 // export {SET_DAYS, SET_DATE, SET_TASKS};
+
+
+export const SET_LESSONS = "SET_LESSONS"

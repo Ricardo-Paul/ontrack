@@ -6,7 +6,8 @@ import { SET_DAYS,
     ADD_DAY,
     LOADING,
     SET_PAGE_NUMBER,
-    SET_NOTE
+    SET_NOTE,
+    SET_LESSONS
 } from "./action-types"
 
 const initialState = {
@@ -16,7 +17,8 @@ const initialState = {
     loading: false,
     tasks: [],
     notes: [],
-    pageNumber: '1'
+    pageNumber: '1',
+    lessons: []
 }
 
 export const dayReducer = (state = initialState, action) => {
@@ -67,6 +69,11 @@ export const dayReducer = (state = initialState, action) => {
             return{
                 ...state,
                 notes: action.payload
+            }
+        case SET_LESSONS:
+            return{
+                ...state,
+                lessons: action.payload
             }
         default: 
             return state
