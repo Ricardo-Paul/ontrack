@@ -24,9 +24,7 @@ import '../../assets/stylesheets/navbar'
 import '../../assets/stylesheets/notes'
 import '../../assets/stylesheets/queries'
 import '../../assets/stylesheets/lessons'
-
-
-
+import '../../assets/stylesheets/content'
 
 export default class App extends Component {
     render() {

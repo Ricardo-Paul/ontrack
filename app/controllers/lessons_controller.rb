@@ -7,7 +7,7 @@ class LessonsController < ApplicationController
 
     def create
         @lesson = Lesson.create(lesson_params)
-        render json: {lesson: @lesson, message: "Great Keep Learning !!!"}
+        render json: @lesson
     end
 
     def getLessons

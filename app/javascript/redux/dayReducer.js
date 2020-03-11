@@ -7,7 +7,8 @@ import { SET_DAYS,
     LOADING,
     SET_PAGE_NUMBER,
     SET_NOTE,
-    SET_LESSONS
+    SET_LESSONS,
+    POST_NOTE
 } from "./action-types"
 
 const initialState = {
@@ -18,7 +19,9 @@ const initialState = {
     tasks: [],
     notes: [],
     pageNumber: '1',
-    lessons: []
+    lessons: [],
+
+    editing: false
 }
 
 export const dayReducer = (state = initialState, action) => {
@@ -75,8 +78,26 @@ export const dayReducer = (state = initialState, action) => {
                 ...state,
                 lessons: action.payload
             }
+        case POST_NOTE:
+            console.log("note payload", action.payload)
+            return {
+                ...state, 
+                notes: state.notes.concat(action.payload)
+            }
+        case "EDITING":
+            return{
+                ...state,
+                editing: true
+            }
+        case "EDIT_NOTE":
+            
+            return{
+
+            }
         default: 
             return state
     }
 }
 
+
+// 

@@ -11,3 +11,5 @@ export const SET_NOTE = "SET_NOTE"
 
 
 export const SET_LESSONS = "SET_LESSONS"
+
+export const POST_NOTE = "POST_NOTE"

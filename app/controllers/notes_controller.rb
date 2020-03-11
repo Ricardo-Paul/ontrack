@@ -1,4 +1,5 @@
 class NotesController < ApplicationController
+ 
     def index
         render json: Note.all
     end
@@ -13,6 +14,15 @@ class NotesController < ApplicationController
     end
 
     def getNotes
+        @notes = Note.where(day_id: params[:day_id])
+        render json: @notes
+    end
+
+    def update
+        @note = Note.find_by(id: params[:id])
+        @note.update(note_params)
+        @note.save 
+
         @notes = Note.where(day_id: params[:day_id])
         render json: @notes
     end

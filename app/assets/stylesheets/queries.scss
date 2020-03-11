@@ -1,15 +1,15 @@
 
 
 @media all and (max-width: 1024px){
-		.date-container{
-			width: 45%;
-		}
+		// .date-container{
+		// 	width: 45%;
+		// }
 	}
 
 @media all and (max-width: 768px){
-		.date-container{
-			width: 44%;
-		}
+		// .date-container{
+		// 	width: 44%;
+		// }
 	}
 
 @media all and (max-width: 425px){
@@ -41,9 +41,12 @@
 		.editor{
 			/*position: absolute;*/
 		}
+		.left{
+			width: 100%;
+		}
 		.date-container{
 			display: block;
-			position: absolute;
+			// position: absolute;
 			top: 4rem;
 			width: 100%;
 		}

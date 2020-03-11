@@ -7,6 +7,8 @@ import Date from './Date';
 import Lesson from './Lesson'
 import Paginate from './Paginate';
 import Navbar from './Navbar';
+import Content from './Content';
+
 
 
 // FontAwesome
@@ -173,6 +175,7 @@ class Productivity extends Component {
                     <Task day_id={this.props.dayId} toggleDone={toggleDone} />
                     <Note />
 
+            <div className="left">
                 <div className="date-container">
                 <h3 className="date-header" > Days of Activity {this.props.pageNumber} </h3>
                 {this.props.days.length === 0 && (<p> Please add a new day record </p>) }
@@ -219,6 +222,8 @@ class Productivity extends Component {
                     />
                 }
                 </div>
+                <Content />
+            </div>
                 <Date />
                 </div>
             </div>

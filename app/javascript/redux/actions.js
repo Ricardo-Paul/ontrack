@@ -9,7 +9,9 @@ import { SET_DAYS,
         LOADING,
         SET_PAGE_NUMBER,
         SET_NOTE,
-        SET_LESSONS
+        SET_LESSONS,
+
+        POST_NOTE
     } 
         from "./action-types";
 
@@ -84,6 +86,7 @@ export const postNote = (title, content, dayId) => (dispatch) => {
     })
     .then( res => {
         console.log(res.data)
+        dispatch({type: POST_NOTE, payload: res.data})
     })
 }
 
@@ -115,5 +118,26 @@ export const postLesson = (description, dayId) => (dispatch) => {
     })
     .then( res => {
         console.log(res.data)
+    })
+}
+
+export const setEdit = () => (dispatch) => {
+    console.log('edit clicked')
+   dispatch({type: "EDITING"})
+}
+
+export const updateNote = (note_id, title, content, dayId) => (dispatch) => {
+    axios({
+        url: `/api/notes/${note_id}`,
+        method: 'PUT',
+        data: {
+            title: title,
+            content: content,
+            day_id: dayId
+        }
+    })
+    .then(res => {
+        console.log(res.data)
+        dispatch({type: SET_NOTE, payload: res.data})
     })
 }
