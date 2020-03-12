@@ -21,22 +21,57 @@ class Lesson extends Component {
 		})
 	}
 
+	displayLessons = () => {
+		const { lessons } = this.props;
+		return (
+			<ul className="lesson-list">
+			   {lessons.map( l => (
+				   <li key={l.id}> {l.description} </li>
+			   ))}
+			</ul>
+		)
+	}
+
+	handleLessonSubmit = (e) => {
+		e.preventDefault();
+		this.props.postLesson(this.state.description, this.props.dayId)
+		this.setState({
+			description: ''
+		})
+	}
+
+	getDateString = (id) => {
+
+		const { days } = this.props;
+		let day = days.find( d => d.id == id)
+		let date = new Date(day.chosen_date).toUTCString()
+		let dateString = date.split(" ").slice(0, 4).join(" ")
+
+		return dateString
+	}
+
 	render(){
 		return(
 			<div className="lesson">
 				<CloseModalButton onClick={this.closeLesson}>
 					x
 				</CloseModalButton>
-				<h4> Takeaways from the day </h4>
-				<h5> date here {this.props.dayId} </h5>
-					<div className="form-group">
-						<label> What have you learned so far ? </label>
-						<input value={this.state.description} onChange={this.handleChange} className="form-control" />
-					</div>
-				<button 
-				 onClick={() => this.props.postLesson(this.state.description, this.props.dayId)}
-				> I learned this </button>
-				{this.state.description}
+				<div className="lesson-header">
+					<p> Takeaways from the day 
+					{this.props.dayId && (
+						<span>{this.getDateString(this.props.dayId)} </span>
+					)}
+					</p>
+				</div>
+
+				<form onSubmit={this.handleLessonSubmit}>
+					<label> What have you learned so far ? </label>
+					<input className="lesson-input" value={this.state.description} onChange={this.handleChange}/>
+
+					<input className="lesson-submit" type="submit" />
+				</form>
+				<hr />
+				{this.displayLessons()}
 			</div>
 		)
 	}
@@ -45,7 +80,8 @@ class Lesson extends Component {
 const mapStateToProps = (state) => {
 	return {
 		dayId: state.dayId,
-		lessons: state.lessons
+		lessons: state.lessons,
+		days: state.days
 	}
 }
 

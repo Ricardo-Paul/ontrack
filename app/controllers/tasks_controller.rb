@@ -16,6 +16,15 @@ class TasksController < ApplicationController
         render json: {task: @task, message:"checked unchecked"}
     end
 
+    def update
+        @task = Task.find_by(id: params[:id])
+        @task.update(task_params)
+        @task.save 
+
+        @tasks = Task.where(day_id: params[:day_id])
+        render json: @tasks
+    end
+
     private
     def task_params
         params.require(:task).permit(:title, :done, :day_id)

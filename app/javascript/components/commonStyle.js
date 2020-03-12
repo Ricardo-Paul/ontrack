@@ -6,9 +6,9 @@ export const CloseModalButton = styled.span`
     top: .5rem;
     right: -.2rem;
     width: 1rem;
-    background: var(--main);
+    background: white;
     cursor: pointer;
-    color: whitesmoke;
+    color: darkgreen;
     display: block;
     margin-bottom: 2rem;
     margin-right: 1rem;
@@ -22,7 +22,8 @@ export const CloseModalButton = styled.span`
     cursor: pointer;
 
     &:hover {
-        background-color: var(--gradient);
+        background-color: darkgreen;
+        color: white;
     }
 `;
 

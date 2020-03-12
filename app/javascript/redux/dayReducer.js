@@ -40,6 +40,7 @@ export const dayReducer = (state = initialState, action) => {
         case SET_TASKS: 
             return {
                 ...state,
+                editing: false,
                 tasks: action.payload
             }
         case SET_DAY_ID:
@@ -71,12 +72,18 @@ export const dayReducer = (state = initialState, action) => {
         case SET_NOTE:
             return{
                 ...state,
+                editing: false,
                 notes: action.payload
             }
         case SET_LESSONS:
             return{
                 ...state,
                 lessons: action.payload
+            }
+        case "ADD_LESSON":
+            return{
+                ...state,
+                lessons: state.lessons.concat(action.payload)
             }
         case POST_NOTE:
             console.log("note payload", action.payload)
@@ -88,11 +95,6 @@ export const dayReducer = (state = initialState, action) => {
             return{
                 ...state,
                 editing: true
-            }
-        case "EDIT_NOTE":
-            
-            return{
-
             }
         default: 
             return state

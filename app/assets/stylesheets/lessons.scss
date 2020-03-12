@@ -10,14 +10,50 @@
     z-index: 100;
     padding: 1rem;
     border-radius: 5px;
-    width: 50%;
-    transform: scale(1);
-
-    left: 50%;
     top: 3.5rem;
 
     transform: scale(0);
+    font-size: .7rem;
 
+    width: 40%;
+    left: 40%;
+    padding: 2.5rem;
+
+
+    label{
+        display: block;
+    }
+
+    .lesson-input{
+        outline: none;
+        margin: 0 auto;
+        border: 1.5px solid var(--main);
+        border-radius: 5px;
+        padding: .2rem;
+        font-size: .7rem;
+
+
+        width: 100%;
+        margin-bottom: .5rem;
+    }
+
+    .lesson-submit{
+        width: 100%;
+
+        cursor: pointer;
+        padding: .2rem;
+        background-color: var(--lightgreen);
+        border: none;
+        color: black;
+        outline: none;
+        border-radius: 5px;
+        transition: .2s;
+
+        &:hover{
+            background-color: darkgreen;
+            color: var(--white);
+        }
+    }
 
     @media screen and (max-width: 425px){
         width: 100%;
@@ -27,3 +63,28 @@
     }
 }
 
+.lesson-header{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: rgb(10, 10, 10);
+    p{
+    }
+    span{
+        display: block;
+        font-size: 1.2rem;
+        color: green;
+    }
+}
+
+.lesson-list{
+        list-style-type: none;
+        color: rgb(109, 107, 107);
+
+        li{
+            display: flex;
+            justify-content: space-between;
+            margin-left: -2.5rem;
+            margin-bottom: .5rem;
+        }
+}

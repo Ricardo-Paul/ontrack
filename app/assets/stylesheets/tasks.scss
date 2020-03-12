@@ -6,11 +6,14 @@
     z-index: 100;
     padding: 1rem;
     border-radius: 5px;
-    width: 55%;
+    width: 40%;
+    padding: 2.5rem;
     transform: scale(0);
 
-    left: 50%;
+    left: 40%;
     top: 3.5rem;
+
+    font-size: .7rem;
     
     .input{
         outline: none;
@@ -20,18 +23,27 @@
         border-radius: 5px;
         padding: .2rem;
         font-size: .7rem;
+        margin-right: .2rem;
     }
 
     .add{
         width: 10%;
         position: absolute;
-        right: 1rem;
-        background: var(--gradient);
+        // right: 1rem;
+        background: rgb(75, 146, 3);
         border: none;
         border-radius: 5px;
         padding: .2rem;
         font-size: .8rem;
+
+        transition: .2s;
     }
+
+    .gbackGround{
+        background: rgb(111, 214, 8);
+        transition: .3s;
+    }
+
     .closeTask{
         position: absolute;
         top: .5rem;
@@ -73,6 +85,18 @@
     }
 }
 
+.edit{
+    cursor: pointer;
+    color: rgb(111, 214, 8);
+    margin-left: .7rem;
+    font-size: .8rem;
+    transition: .2s;
+
+    &:hover{
+        color: darkgreen;
+    }
+}
+
 .col-xs-10{
     position: absolute;
     left: 0;
@@ -81,4 +105,17 @@
 .task-empty{
     color: rgb(170, 169, 166);
     text-align: center;
+}
+
+.task-header{
+    margin-top: 1rem;
+    // background-color: rgb(241, 139, 99);
+    text-align: center;
+    p{
+    }
+    span{
+        display: block;
+        font-size: 1.2rem;
+        color: green;
+    }
 }

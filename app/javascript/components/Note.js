@@ -7,8 +7,8 @@ import { CloseModalButton, DIV } from './commonStyle';
 class Note extends Component {
     state = {
         value: RichTextEditor.createEmptyValue(),
-        content: 'hell',
-        title: 'title here',
+        content: '',
+        title: '',
         note_id: ''
     }
 
@@ -31,7 +31,7 @@ class Note extends Component {
     }
 
     handleNoteSubmit = () => {
-        const { editing, notes, updateNote, dayId } = this.props;
+        const { editing, notes, updateNote, dayId, setEdit } = this.props;
         const { title, content, note_id } = this.state;
 
         if(editing){
@@ -39,7 +39,11 @@ class Note extends Component {
             let temp = notes.find( n => n.id === this.state.note_id)
             temp.content = content
             temp.title = title
-            console.log(temp)
+            this.setState({
+                title: '',
+                content: '',
+                value: RichTextEditor.createEmptyValue()
+            })
         }else{
             this.props.postNote(this.state.title, this.state.content, this.props.dayId)
         }
@@ -55,11 +59,14 @@ class Note extends Component {
         const displayEditor = () => {
             return(
                 <div className="editor">
+                <label> Title: </label>
                 <input 
                   placeholder="Note title"
                   value={this.state.title}
                   onChange={this.setTitle}
                 />
+
+                <label> Content: </label>
                     <RichTextEditor 
                     className="richText"
                     value={this.state.value}
@@ -78,7 +85,8 @@ class Note extends Component {
                 return <h6> Note placholder </h6>
             }
             return (
-                <ul>
+                <ul className="note-list">
+                    <span> Saved Note List </span>
                    { notes.map(n => <li onClick={
                        () => {this.setState({
                            value: RichTextEditor.createValueFromString(n.content, 'html'),

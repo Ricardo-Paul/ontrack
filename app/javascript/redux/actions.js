@@ -56,8 +56,6 @@ export const setLessons = (payload) => {
 }
 
 export const fetchNote = (dayId) => (dispatch) => {
-        // dispatch(setLoading())
-        console.log('dayId here', dayId)
         axios({
             method: 'get',
             url: '/api/getNotes/',
@@ -67,12 +65,10 @@ export const fetchNote = (dayId) => (dispatch) => {
         })
         .then(res => {
             dispatch(setNote(res.data))
-            console.log(res.data)
         })
 }
 
 export const postNote = (title, content, dayId) => (dispatch) => {
-    console.log('clicked', dayId)
     axios({
         method: 'post',
         url: '/api/notes',
@@ -85,7 +81,6 @@ export const postNote = (title, content, dayId) => (dispatch) => {
         }
     })
     .then( res => {
-        console.log(res.data)
         dispatch({type: POST_NOTE, payload: res.data})
     })
 }
@@ -93,7 +88,6 @@ export const postNote = (title, content, dayId) => (dispatch) => {
 
 // lessons -------------------------------------
 export const fetchLessons = (dayId) => (dispatch) => {
-    console.log('dayId here', dayId)
     axios({
         method: 'get',
         url: '/api/getLessons/',
@@ -102,7 +96,6 @@ export const fetchLessons = (dayId) => (dispatch) => {
         }
     })
     .then(res => {
-        console.log("lessons here",res.data)
         dispatch(setLessons(res.data))
     })
 }
@@ -117,12 +110,11 @@ export const postLesson = (description, dayId) => (dispatch) => {
         }
     })
     .then( res => {
-        console.log(res.data)
+        dispatch({type: "ADD_LESSON", payload: res.data})
     })
 }
 
 export const setEdit = () => (dispatch) => {
-    console.log('edit clicked')
    dispatch({type: "EDITING"})
 }
 
@@ -137,7 +129,20 @@ export const updateNote = (note_id, title, content, dayId) => (dispatch) => {
         }
     })
     .then(res => {
-        console.log(res.data)
         dispatch({type: SET_NOTE, payload: res.data})
+    })
+}
+
+export const updateTask = (task_id, title, dayId) => (dispatch) => {
+    axios({
+        url: `/api/tasks/${task_id}`,
+        method: 'PUT',
+        data: {
+            title: title,
+            day_id: dayId
+        }
+    })
+    .then(res => {
+        dispatch({type: SET_TASKS, payload: res.data})
     })
 }

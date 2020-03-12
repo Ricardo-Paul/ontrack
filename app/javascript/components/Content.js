@@ -14,9 +14,6 @@ class Content extends Component {
     }
 
     render() {
-        const { notes, lessons } = this.props;
-        console.log("notes from content", this.props.notes)
- 
         return (
             <div className="content">
                 {this.returnNotes()}
