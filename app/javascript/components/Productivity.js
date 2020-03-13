@@ -8,6 +8,7 @@ import Lesson from './Lesson'
 import Paginate from './Paginate';
 import Navbar from './Navbar';
 import Content from './Content';
+import Footer from './Footer';
 
 
 
@@ -36,6 +37,7 @@ const { extractDate, extractMonth } = helpers;
 class Productivity extends Component {
     extractDate = helpers.extractDate;
     extractMonth = helpers.extractMonth;
+
     state = {
         dayId: '',
         pageNumber: 1,
@@ -154,6 +156,7 @@ class Productivity extends Component {
         }
 
         const setPageNumber = (page) => {
+            this.props.setDayId(this.state.dayId)
             this.props.setPageNumber(page)
             const { authorization } = this.authorizeUser();
             axios.get('/api/days', authorization)
@@ -177,7 +180,7 @@ class Productivity extends Component {
 
             <div className="left">
                 <div className="date-container">
-                <h3 className="date-header" > Days of Activity {this.props.pageNumber} </h3>
+                <h3 className="date-header" > ACTIVE DAYS </h3>
                 {this.props.days.length === 0 && (<p> Please add a new day record </p>) }
                 { this.props.loading ? (<span className="spinner-wrapper" > <Spinner /> Loading... </span>) :
                     this.props.days.map(day => {
@@ -196,7 +199,7 @@ class Productivity extends Component {
                                 this.props.setDayId(day.id)
                                 this.props.fetchNote(day.id)
                             }} >
-                                <FontAwesomeIcon className="icon" icon={faStickyNote} />
+                                <FontAwesomeIcon className="icon-note" icon={faStickyNote} />
                             </span>
                             <span
                                 id={day.id}
@@ -206,7 +209,7 @@ class Productivity extends Component {
                                     this.props.fetchLessons(day.id)
                                 }}
                             >
-                                <FontAwesomeIcon className="icon" icon={faBookReader} />
+                                <FontAwesomeIcon className="icon-lesson" icon={faBookReader} />
                             </span>
                         </div>
                     </div>
@@ -226,6 +229,7 @@ class Productivity extends Component {
             </div>
                 <Date />
                 </div>
+                <Footer />
             </div>
         )
     }
@@ -253,3 +257,5 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Productivity);
+
+// 

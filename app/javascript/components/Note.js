@@ -4,7 +4,14 @@ import { fetchNote, postNote, setEdit, updateNote } from '../redux/actions';
 import RichTextEditor from 'react-rte'
 import { CloseModalButton, DIV } from './commonStyle';
 
+// helpers imports
+import helpers from '../modules/utils';
+// const { fieldIsEmpty } = helpers;
+
 class Note extends Component {
+    fieldIsEmpty = helpers.fieldIsEmpty;
+
+
     state = {
         value: RichTextEditor.createEmptyValue(),
         content: '',
@@ -33,6 +40,9 @@ class Note extends Component {
     handleNoteSubmit = () => {
         const { editing, notes, updateNote, dayId, setEdit } = this.props;
         const { title, content, note_id } = this.state;
+        if(this.fieldIsEmpty(title) || this.fieldIsEmpty(content)){
+            return alert("Please provide a value for each field")
+        }
 
         if(editing){
             updateNote(note_id, title, content, dayId)
@@ -82,7 +92,7 @@ class Note extends Component {
        const displayNotes = () => {
             const { notes } = this.props;
             if (notes == null || notes.length === 0){
-                return <h6> Note placholder </h6>
+                return null
             }
             return (
                 <ul className="note-list">

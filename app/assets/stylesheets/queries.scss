@@ -1,20 +1,21 @@
 
-
-@media all and (max-width: 1024px){
-		// .date-container{
-		// 	width: 45%;
-		// }
-	}
-
 @media all and (max-width: 768px){
-		// .date-container{
-		// 	width: 44%;
-		// }
+	.note{
+		padding: 1rem;
 	}
+
+	#task .add{
+		width: 12%;
+		font-size: .6rem;
+		padding: .4rem;
+		text-align: center;
+	}
+}
 
 @media all and (max-width: 425px){
 		#task{
 			width: 100%;
+			top: 4rem;
 			left: 0;
 			right: 0;
 			min-height: 26rem;
@@ -37,6 +38,17 @@
 			right: 0;
 			min-height: 26rem;
 		}
+		.note{
+			padding: 1rem;
+			top: 4rem;
+			.note-list{
+				
+			}
+		}
+
+		.lesson{
+			
+		}
 
 		.editor{
 			/*position: absolute;*/
@@ -47,7 +59,8 @@
 		.date-container{
 			display: block;
 			// position: absolute;
-			top: 4rem;
+			// top: 6rem;
+			margin-top: 2.5rem;
 			width: 100%;
 		}
 	}

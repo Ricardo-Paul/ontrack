@@ -6,7 +6,7 @@ class Content extends Component {
     returnNotes = () => {
         const { notes, lessons } = this.props;
         if (notes == null || notes.length === 0){
-            return <h6> Note placholder </h6>
+            return <p></p>
         }
         return (
             <p>{notes.length}</p>

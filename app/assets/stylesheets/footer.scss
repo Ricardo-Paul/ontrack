@@ -1,0 +1,17 @@
+.footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    z-index: 500;
+    display: flex;
+    padding: .2rem;
+    justify-content: space-between;
+    font-size: .7rem;
+    height: 2rem;
+    line-height: 2rem;
+    color: darkgreen;
+    border-top: 1px solid var(--main);
+    box-shadow: -2px -2px -2px -2px solid rgb(116, 113, 113);
+}

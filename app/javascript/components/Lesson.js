@@ -4,7 +4,11 @@ import axios from 'axios'
 import { fetchLessons, postLesson } from '../redux/actions'
 import { CloseModalButton } from './commonStyle'
 
+// helpers import
+import helpers from '../modules/utils';
+
 class Lesson extends Component {
+	isEmpty = helpers.fieldIsEmpty;
 
 	state = {
 		description: ""
@@ -34,19 +38,21 @@ class Lesson extends Component {
 
 	handleLessonSubmit = (e) => {
 		e.preventDefault();
-		this.props.postLesson(this.state.description, this.props.dayId)
+		const { description } = this.state;
+		this.props.postLesson(description, this.props.dayId)
+		if (this.isEmpty(description)){
+			return alert('Please provide a content')
+		}
 		this.setState({
 			description: ''
 		})
 	}
 
 	getDateString = (id) => {
-
 		const { days } = this.props;
 		let day = days.find( d => d.id == id)
 		let date = new Date(day.chosen_date).toUTCString()
 		let dateString = date.split(" ").slice(0, 4).join(" ")
-
 		return dateString
 	}
 
@@ -59,7 +65,9 @@ class Lesson extends Component {
 				<div className="lesson-header">
 					<p> Takeaways from the day 
 					{this.props.dayId && (
-						<span>{this.getDateString(this.props.dayId)} </span>
+						<span>
+							{this.getDateString(this.props.dayId)} 
+						</span>
 					)}
 					</p>
 				</div>

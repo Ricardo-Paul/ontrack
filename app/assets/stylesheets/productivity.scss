@@ -1,7 +1,7 @@
 :root {
     --main: rgb(137, 141, 136);
-    --gradient1: linear-gradient(rgb(73, 187, 7), var(--main));
-    --gradient: rgb(223, 109, 2);
+    --gradient1: linear-gradient(rgb(73, 187, 7), darkgreen);
+    --gradient: var(--gradient1);
     --lightgreen: rgb(111, 214, 8);
     --darkgreen: darkgreen;
 }
@@ -27,10 +27,7 @@
     box-shadow: 1px 2px 4px 2px rgb(189, 185, 185);
     display: flex;
     flex-wrap: wrap;
-    // border: 1px solid var(--primary);
-
-
-    // display: none;
+    padding: 2.5rem;
 }
 
 .date-wrapper{
@@ -86,6 +83,7 @@
         text-align: center;
         border-radius: 50%;
         cursor: pointer;
+        color: grey;
 
         transition: .2s;
     }
@@ -98,14 +96,6 @@
 
     span:active{
         color: rgb(241, 214, 194);
-    }
-
-    .icon-task{
-        color: rgb(192, 127, 127);
-    }
-
-    .icon-task:hover{
-        color: red;
     }
 
     .icon-task:active{
@@ -121,7 +111,7 @@
 .spinner{
     display: block;
     font-size: 1rem;
-    background-color: rgb(228, 114, 38);
+    background: var(--gradient);
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
@@ -132,9 +122,11 @@
     width: 100%;
     display: block;
     text-align: center;
-    font-size: 1rem;
+    font-size: .9rem;
     margin: 0 auto;
     margin-bottom: 1rem;
+
+    color: darkgreen;
 }
 
 .left{

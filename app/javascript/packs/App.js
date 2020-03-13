@@ -25,6 +25,8 @@ import '../../assets/stylesheets/notes'
 import '../../assets/stylesheets/queries'
 import '../../assets/stylesheets/lessons'
 import '../../assets/stylesheets/content'
+import '../../assets/stylesheets/footer'
+
 
 export default class App extends Component {
     render() {

@@ -15,7 +15,13 @@ export default function Paginate({totalDays, dayPerPage, setPageNumber}) {
         <nav>
             {pageNumber.map( page => {
                 return(
-                    <button key={page} className="page-button" onClick={() => setPageNumber(page)} > {page} </button>
+                    <button 
+                    key={page} 
+                    className="page-button" 
+                    onClick={() => setPageNumber(page)} 
+                    > 
+                    {page} 
+                    </button>
                 )
             })}
         </nav> 

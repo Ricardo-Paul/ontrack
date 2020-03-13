@@ -14,7 +14,11 @@ class Date extends Component {
 
     render() {
     const handleDateChange = (e) => {
+        console.log(e.target.value)
         this.props.setLoading()
+        if(e.target.value == null || e.target.value.length === 0){
+            return
+        }
         this.setState({
             date: e.target.value
         })

@@ -10,7 +10,12 @@ import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
 
 // redux
 import {addTask, setDayId, updateTask, setEdit } from '../redux/actions';
+
+// helpers import
+import helpers from '../modules/utils';
+
 class Task extends Component {
+    fieldIsEmpty = helpers.fieldIsEmpty;
 
     state = {
         title: '',
@@ -69,6 +74,10 @@ class Task extends Component {
             e.preventDefault()
             const { dayId, addTask, editing, updateTask } = this.props;
 
+            if(this.fieldIsEmpty(this.state.title)){
+                return alert('please provide task')
+            }
+            
             if (editing){
                 const { task_id, title } = this.state;
                 updateTask(task_id, title, dayId)

@@ -49,7 +49,7 @@
         padding: .1rem;
         outline: none;
         border: none;
-        // background-color: rgb(230, 226, 223);
+        background-color: rgb(230, 226, 223);
         border: 1px solid var(--gradient);
         width: 100%;
         border-radius: 5px;
@@ -61,7 +61,8 @@
     button{
         cursor: pointer;
         padding: .2rem;
-        background-color: var(--gradient);
+        // background: var(--gradient);
+        background-color: green;
         border: none;
         color: white;
         outline: none;
@@ -71,8 +72,8 @@
         transition: .2s;
 
         &:hover{
-            background-color: white;
-            color: var(--gradient);
+            background: var(--gradient);
+            color: whitesmoke;
         }
     }
 }
@@ -104,30 +105,34 @@
 
 .note-list{
     // margin-left: -1.5rem;
-
+    background-color: rgb(255, 255, 255);
     box-shadow: 1px 2px 4px 2px rgb(189, 185, 185);
     box-sizing: border-box;
     border-radius: 5px;
     padding: 1rem;
     list-style-type: none;
     list-style: none;
-     span{
+
+    position: absolute;
+    top: 3rem;
+    right: -10rem;
+    span{
          display: block;
          margin: 0 auto;
          font-weight: 300;
+         color: var(--darkgreen);
         //  background-color: rgb(88, 167, 231);
          text-align: center;
          font-size: 1.1rem;
      }
      li{
          cursor: pointer;
-         background-color: rgb(226, 226, 226);
          list-style: none;
          padding: .2rem;
-         border-bottom: 1px solid white;
+         border-bottom: 1px solid rgb(235, 228, 228);
 
          &:hover{
-            background-color: rgb(165, 164, 164);
+            background-color: var(--darkgreen);
             color: white;
          }
      }
