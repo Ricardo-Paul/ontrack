@@ -15,10 +15,6 @@ const helpers = {
         return month
     },
     fieldIsEmpty: (field) => field.trim().length === 0
-    
-    // function(field){
-    //     return field.trim().length === 0
-    // }
 }
 
 

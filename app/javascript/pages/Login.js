@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import helpers from '../modules/utils'
 
 export default class Login extends Component {
+isEmpty = helpers.fieldIsEmpty;
 
     state = {
         email: '',
         password: '',
-        error: 'err'
+        error: ''
     }
 
     render() {
-
         const handleChange = ({target: {name, value}}) => {
             this.setState({
                 [name]: value
@@ -19,6 +20,12 @@ export default class Login extends Component {
 
         const handleSubmit = (e) => {
             e.preventDefault();
+
+            if(this.isEmpty(this.state.email) || this.isEmpty(this.state.password)){
+                this.setState({
+                    error: "Can't be empty"
+                })
+            }
             const data = {
                 user: {
                     email: this.state.email,
@@ -35,6 +42,10 @@ export default class Login extends Component {
                     this.setState({
                         error: res.data.error + " " + "Please try again or signup"
                     })
+
+                    setTimeout(() => this.setState({
+                        error: ''
+                    }), 3000)
                 })
         }
 
@@ -54,25 +65,33 @@ export default class Login extends Component {
 
         return (
             <div>
-                Login
-                <form>
+                <div className="form-container" />
+                <form className="intro-form">
+                {/* <p> Track  </p> */}
+				<h2> LOGIN </h2>
+				<hr/>
                     <input 
                     type="text" 
                     onChange={handleChange} 
                     placeholder="email" 
                     name="email"
+                    className="email-input"
                     />
                     <input 
                     type="password" 
                     onChange={handleChange} 
                     placeholder="password" 
                     name="password"
+                    className="password-input"
                     />
-                    <button type="submit"  onClick={handleSubmit}> Login </button>
-                    <button type="submit" onClick={handleLogout}> Logout  </button>
+                    <button type="submit" className="submit-button"  onClick={handleSubmit}> Login </button>
+                    {/* <button type="submit" onClick={handleLogout}> Logout  </button> */}
                 </form>
-                {this.state.error} <br />
-                {this.state.email} - {this.state.password}
+                    {this.state.error && 
+                    <div className="error">
+                        {this.state.error}
+                    </div>
+                    }
             </div>
         )
     }

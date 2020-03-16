@@ -26,6 +26,8 @@ import '../../assets/stylesheets/queries'
 import '../../assets/stylesheets/lessons'
 import '../../assets/stylesheets/content'
 import '../../assets/stylesheets/footer'
+import '../../assets/stylesheets/login'
+
 
 
 export default class App extends Component {
