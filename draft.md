@@ -13,3 +13,8 @@
 }
 
 User.create(name: "Ricardo Paul", email:"ricardo459@gmail.com", password:"1234567", password_confirmation:"1234567")
+
+#Procfile.dev
+
+web: bundle exec rails s
+webpacker: ./bin/webpack-dev-server
