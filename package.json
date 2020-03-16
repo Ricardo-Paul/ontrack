@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "build": "cd client && yarn install && yarn build && cd ..",
+    "build": "npm install && npm build && cd ..",
     "deploy": "cp -a client/build/. public/",
-    "postinstall": "yarn build && yarn deploy && echo 'Client built!'"
+    "postinstall": "webpack —config webpack.config.js"
   },
   "engines": {
     "yarn": "1.12.3",
