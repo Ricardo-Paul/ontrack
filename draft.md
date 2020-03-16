@@ -27,3 +27,6 @@ webpacker: ./bin/webpack-dev-server
 	    "heroku-postbuild": "npm run webpack:deploy",
 
 sudo kill $(sudo lsof -t -i:3000)
+
+    // "npm": "6.13.4",
+    // "node": "13.5.0"

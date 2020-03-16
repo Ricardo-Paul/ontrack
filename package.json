@@ -4,9 +4,7 @@
     "heroku-postbuid" : "cross-env NODE_ENV=production WEBPACK_CONFIG=browser_prod,server_prod webpack --colors"
   },
   "engines": {
-    "yarn": "1.12.3",
-    "npm": "6.13.4",
-    "node": "13.5.0"
+    "yarn": "1.12.3"
   },
 
   "name": "productivity_app",
