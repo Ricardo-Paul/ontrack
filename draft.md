@@ -25,3 +25,5 @@ webpacker: ./bin/webpack-dev-server
     // "deploy": "cp -a build/. public/",
 
 	    "heroku-postbuild": "npm run webpack:deploy",
+
+sudo kill $(sudo lsof -t -i:3000)

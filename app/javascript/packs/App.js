@@ -14,19 +14,20 @@ window.setDays = setDays
 window.setDate = setDate
 window.addTask = addTask
 // stylesheets
-import '../../assets/stylesheets/app'
-import '../../assets/stylesheets/productivity'
-import '../../assets/stylesheets/tasks'
-import '../../assets/stylesheets/application'
-import '../../assets/stylesheets/date'
-import '../../assets/stylesheets/paginate'
-import '../../assets/stylesheets/navbar'
-import '../../assets/stylesheets/notes'
-import '../../assets/stylesheets/queries'
-import '../../assets/stylesheets/lessons'
-import '../../assets/stylesheets/content'
-import '../../assets/stylesheets/footer'
-import '../../assets/stylesheets/login'
+
+// import '../../assets/stylesheets/app'
+// import '../../assets/stylesheets/productivity'
+// import '../../assets/stylesheets/tasks'
+// import '../../assets/stylesheets/application'
+// import '../../assets/stylesheets/date'
+// import '../../assets/stylesheets/paginate'
+// import '../../assets/stylesheets/navbar'
+// import '../../assets/stylesheets/notes'
+// import '../../assets/stylesheets/queries'
+// import '../../assets/stylesheets/lessons'
+// import '../../assets/stylesheets/content'
+// import '../../assets/stylesheets/footer'
+// import '../../assets/stylesheets/login'
 
 
 

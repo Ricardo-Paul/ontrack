@@ -6,12 +6,12 @@
   "engines": {
     "yarn": "1.12.3",
     "npm": "6.13.4",
-    "node": "12.11.1"
+    "node": "13.5.0"
   },
 
   "name": "productivity_app",
   "private": true,
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:3000",
   "dependencies": {
     "@babel/preset-react": "^7.8.3",
     "@fortawesome/fontawesome-free": "^5.12.1",
@@ -31,7 +31,10 @@
     "react-rte": "^0.16.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^5.0.1",
+    "styled-components": "^5.0.1"
+  },
+
+  "devDependencies": {
     "webpack-dev-server": "^3.10.3"
   }
 }
