@@ -2,7 +2,7 @@
   "scripts": {
     "build": "npm install && npm build",
     "deploy": "cp -a build/. public/",
-    "heroku-postbuild": "npm build && npm deploy"
+    "postinstall": "npm run build && npm run deploy"
   },
   "engines": {
     "yarn": "1.12.3",
