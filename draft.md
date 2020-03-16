@@ -23,3 +23,5 @@ webpacker: ./bin/webpack-dev-server
     // "start": "node server.js",
     // "build": "npm install && npm build",
     // "deploy": "cp -a build/. public/",
+
+	    "heroku-postbuild": "npm run webpack:deploy",
