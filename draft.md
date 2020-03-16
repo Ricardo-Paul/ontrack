@@ -18,3 +18,8 @@ User.create(name: "Ricardo Paul", email:"ricardo459@gmail.com", password:"123456
 
 web: bundle exec rails s
 webpacker: ./bin/webpack-dev-server
+
+
+    // "start": "node server.js",
+    // "build": "npm install && npm build",
+    // "deploy": "cp -a build/. public/",

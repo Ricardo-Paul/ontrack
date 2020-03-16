@@ -1,9 +1,7 @@
 {
   "scripts": {
-    "start": "node server.js",
-    "build": "npm install && npm build",
-    "deploy": "cp -a build/. public/",
-    "postinstall": "npm run build && npm run deploy"
+    "webpack:deploy": "webpack --config=webpack/webpack.config.js -p",
+    "heroku-postbuild": "npm run webpack:deploy"
   },
   "engines": {
     "yarn": "1.12.3",
