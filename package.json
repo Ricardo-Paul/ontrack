@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "build": "yarn install && yarn build",
+    "build": "npm install && npm build",
     "deploy": "cp -a build/. public/",
-    "postinstall": "yarn run build && yarn run deploy"
+    "postinstall": "npm run build && npm run deploy"
   },
   "engines": {
     "yarn": "1.12.3",
