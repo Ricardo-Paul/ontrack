@@ -1,4 +1,2 @@
-#Procfile.dev
-
-web: bundle exec rails s
-webpacker: ./bin/webpack-dev-server
+# Procfile
+web: bundle exec puma -t 5:5 -p ${PORT:-3001} -e ${RACK_ENV:-development}
