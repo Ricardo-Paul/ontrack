@@ -87,6 +87,11 @@ isEmpty = helpers.fieldIsEmpty;
                     <button type="submit" className="submit-button"  onClick={handleSubmit}> Login </button>
                     {/* <button type="submit" onClick={handleLogout}> Logout  </button> */}
                 </form>
+                <p className="account"> Don't have an account ? {" "}
+                    <a href="/signup" >
+                        Please signup
+                    </a> 
+                </p>
                     {this.state.error && 
                     <div className="error">
                         {this.state.error}
@@ -99,3 +104,4 @@ isEmpty = helpers.fieldIsEmpty;
 
 // email: "alex@gmail.com",
 // password: "1234567"
+// 

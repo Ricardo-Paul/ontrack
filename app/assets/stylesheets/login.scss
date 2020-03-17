@@ -77,15 +77,18 @@
 
 .submit-button{
     cursor: pointer;
-    background: rgb(209, 208, 208);
+    // background: rgb(209, 208, 208);
     transition: .4s;
-    color: white;
+    color: darkgreen;
     outline: none;
     border: none;
+
+    border: 1px var(--darkgreen) solid;
 }
 
 .submit-button:hover{
     background-color:var(--darkgreen);
+    color: white;
 }
 
 // .email-input:focus, .password-input:focus{
@@ -102,4 +105,11 @@
     border-radius: 5px;
     box-shadow: 2px 2px 10px lightslategray;
     font-size: .7rem;
+}
+
+.account{
+    text-align: center;
+    a{
+        color: var(--darkgreen);
+    }
 }

@@ -18,8 +18,8 @@ class Content extends Component {
             <div className="content">
                 {this.returnNotes()}
                 <p> This app is still under construction...</p> <br/>
-                <p> I'm working hard to fix some issues, complete the core features and add more </p> <br/>
-                <p>Thank you </p> <br/>
+                <p> I'm working hard to fix some issues, complete the core features and add more ones </p> <br/>
+                <p>Thank you !</p> <br/>
                 <p>@Ricardo</p>
             </div>
         )
