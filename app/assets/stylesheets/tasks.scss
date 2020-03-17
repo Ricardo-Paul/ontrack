@@ -14,7 +14,7 @@
     top: 3.5rem;
 
     font-size: .7rem;
-    
+
     .input{
         outline: none;
         width: 88%;
@@ -38,6 +38,47 @@
 
         transition: .2s;
     }
+
+    @media screen and (max-width: 320px){
+        .add{
+            // width: 25%;
+            padding: .3rem;
+            font-size: .8rem;
+            color: #ffffff;
+            padding: .1rem;
+        }
+        .input{
+            width: 80%;
+        }
+    }
+
+    @media screen and (max-width: 425px) {
+        width: 100%;
+        top: 4rem;
+        left: 0;
+        right: 0;
+        min-height: 26rem;
+
+        .input{
+            width: 84%;
+        }
+
+        .add{
+            width: 12%;
+            font-size: .4rem;
+            padding: .4rem;
+            text-align: center;
+        }
+    }
+
+    @media all and (max-width: 768px) and (min-width: 424px) {
+        padding: 1rem;
+        top: 4rem;
+        width: 80%;
+        left: 10%;
+        right: 10%;
+    }
+    
 
     .gbackGround{
         background: rgb(111, 214, 8);

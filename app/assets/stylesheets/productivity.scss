@@ -152,4 +152,16 @@
     box-shadow: 1px 2px 4px 2px rgb(189, 185, 185);
     display: flex;
     flex-wrap: wrap;
+
+    font-size: .7rem;
+    p{
+        margin: .1rem;
+        &:last-of-type{
+            display: block;
+            font-weight: bold;
+            color: rgb(0, 0, 0);
+            background-color: rgb(90, 219, 4);
+        }
+    }
+
 }

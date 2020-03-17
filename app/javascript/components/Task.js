@@ -121,7 +121,7 @@ class Task extends Component {
         }
 
         return (
-            <div className="col-md-6 col-xs-10" id="task">
+            <div id="task">
 
                 <div className="task-header">
                     {this.props.day_id && 
