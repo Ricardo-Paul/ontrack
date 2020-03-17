@@ -64,3 +64,9 @@
 			width: 90%;
 		}
 	}
+
+	@media all and (max-width: 1024px) and (min-width: 768px){
+		.note{
+			padding: .5rem;
+		}
+	}
